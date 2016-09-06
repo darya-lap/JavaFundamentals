@@ -1,0 +1,5 @@
+rootProject.name = 'JavaFundamentals'
+
+include 'core',
+        'intro',
+        'strings'
