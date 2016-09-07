@@ -3,7 +3,7 @@ package Task_3;
 import static Task_3.Function3.F3;
 
 /**
- * Created by Дарья on 26.08.2016.
+ *
  */
 public class Main3 {
     public static void main(String[] args) {
