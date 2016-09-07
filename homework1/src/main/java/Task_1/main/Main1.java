@@ -1,9 +1,9 @@
 /**
  * Created by Дарья on 04.09.2016.
  */
-package javase01.t01.main;
+package Task_1.main;
 
-import javase01.t01.logic.Logic;
+import Task_1.logic.Logic;
 
 public class Main1 {
 

@@ -2,4 +2,7 @@ rootProject.name = 'JavaFundamentals'
 
 include 'core',
         'intro',
-        'strings'
+        'strings',
+        'firsTests',
+        'homework2',
+        'homework1'
