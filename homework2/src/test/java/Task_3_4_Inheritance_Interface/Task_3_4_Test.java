@@ -2,6 +2,10 @@ package Task_3_4_Inheritance_Interface;
 
 import org.junit.Test;
 
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class Task_3_4_Test {
@@ -12,10 +16,10 @@ public class Task_3_4_Test {
     Stationery lcb = new LineCopyBook(50,"Fenix", "blue", 100);
     Stationery p = new Pencil(70, "ErichKrause", "HB");
     Stationery cp = new ColorPencil(70, "ErichKrause", "HB", "yellow");
-    BeginnerSet set = new BeginnerSet(bp,cbp,fp,ccb,lcb,p,cp);
 
     @Test
     public void BegginerSetCreate(){
+        BeginnerSet set = new BeginnerSet(bp,cbp,fp,ccb,lcb,p,cp);
         assertEquals(set.getStationery(0),bp);
         assertEquals(set.getStationery(1),cbp);
         assertEquals(set.getStationery(2),fp);
@@ -29,5 +33,37 @@ public class Task_3_4_Test {
     public void CheckClassName(){
         String s =  bp.getClass().getSimpleName();
         System.out.println(s.charAt(0));
+    }
+
+    @Test
+    public void CompareByPrice(){
+        Comparator<Stationery> comp = new ComparatorByPrice();
+        Set<Stationery> set = new TreeSet<>(comp);
+
+        set.add(bp);
+        set.add(cbp);
+        set.add(fp);
+        set.add(ccb);
+        set.add(lcb);
+        set.add(p);
+        set.add(cp);
+        System.out.println(set.toString());
+
+    }
+
+    @Test
+    public void CompareByName(){
+        Comparator<Stationery> comp = new ComparatorByName();
+        Set<Stationery> set = new TreeSet<>(comp);
+
+        set.add(bp);
+        set.add(cbp);
+        set.add(fp);
+        set.add(ccb);
+        set.add(lcb);
+        set.add(p);
+        set.add(cp);
+        System.out.println(set.toString());
+
     }
 }

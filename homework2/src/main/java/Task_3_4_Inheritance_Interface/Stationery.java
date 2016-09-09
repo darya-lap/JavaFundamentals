@@ -8,4 +8,10 @@ public class Stationery{
         this.producer = producer;
     }
 
+    @Override
+    public String toString(){
+        String s = this.getClass().getSimpleName() + " " + this.price + " руб." + " " + this.producer + "\n";
+        return s;
+    }
+
 }
