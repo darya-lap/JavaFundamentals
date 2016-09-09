@@ -2,7 +2,7 @@ package Task_6;
 import java.util.Scanner;
 
 /**
- * Created by Дарья on 27.08.2016.
+ * Класс для использования возможностей программы
  */
 public class Start_Notebook {
     public static void main(String[] args) {
