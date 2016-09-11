@@ -1,6 +1,6 @@
 package Task_6_InClass;
 
-@Boat(nameOfBoat = "Taifun", leader = "Petrov V.V.", isSailing = true)
+@Boat(nameOfBoat = "Dmitry Donskoi", leader = "Petrov V.V.", isSailing = true)
 
 public class NuclearPowerBoat {
     private EngineOfNuclearPowerBoat engine;
