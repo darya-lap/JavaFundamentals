@@ -1,5 +1,7 @@
 package Task_6_InClass;
 
+//@Documented
+//@MyAnnotation
 public class NuclearPowerBoat {
     private EngineOfNuclearPowerBoat engine;
 
