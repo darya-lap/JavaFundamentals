@@ -1,7 +1,7 @@
 package Task_6_InClass;
 
-//@Documented
-//@MyAnnotation
+@Boat(nameOfBoat = "Taifun", leader = "Petrov V.V.", isSailing = true)
+
 public class NuclearPowerBoat {
     private EngineOfNuclearPowerBoat engine;
 
