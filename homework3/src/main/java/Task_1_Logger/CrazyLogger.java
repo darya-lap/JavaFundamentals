@@ -18,10 +18,29 @@ public class CrazyLogger {
         return builder.toString();
     }
 
-    public void findWord(String word){
+    public void findDay(String day){
         int flagIndex = 0;
         int endIndex = 0;
-        int beginIndex = builder.indexOf(word,flagIndex);
+        int beginIndex = builder.indexOf(day,flagIndex);
+        if (beginIndex < 0) System.out.println("У вас нет сообщений, удовлетворяющих поиску :(\n");
+        else {
+            while ((endIndex < builder.length()) && (beginIndex >= 0)) {
+                beginIndex = builder.indexOf(day, flagIndex);
+                endIndex = beginIndex;
+                while (builder.charAt(endIndex) != '\n') {
+                    endIndex++;
+                }
+                String sub = builder.substring(beginIndex, endIndex);
+                System.out.println(sub);
+                flagIndex = endIndex++;
+            }
+        }
+    }
+
+    public void findWord(String word) {
+        int flagIndex = 0;
+        int endIndex = 0;
+        int beginIndex = builder.indexOf(word, flagIndex);
         if (beginIndex < 0) System.out.println("У вас нет сообщений, удовлетворяющих поиску :(\n");
         else {
             while ((endIndex < builder.length()) && (beginIndex >= 0)) {
@@ -30,6 +49,10 @@ public class CrazyLogger {
                 while (builder.charAt(endIndex) != '\n') {
                     endIndex++;
                 }
+                while ((builder.charAt(beginIndex) != '\n') && (beginIndex > 0)) {
+                    beginIndex--;
+                }
+                if (beginIndex != 0) beginIndex++;
                 String sub = builder.substring(beginIndex, endIndex);
                 System.out.println(sub);
                 flagIndex = endIndex++;
