@@ -1,8 +1,6 @@
 rootProject.name = 'JavaFundamentals'
 
-include 'core',
-        'intro',
-        'strings',
-        'firsTests',
+include 'homework1',
         'homework2',
-        'homework1'
+        'homework3'
+
