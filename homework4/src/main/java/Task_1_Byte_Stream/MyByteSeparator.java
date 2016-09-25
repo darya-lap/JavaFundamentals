@@ -1,8 +1,8 @@
 package Task_1_Byte_Stream;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyByteSeparator {
     StringBuilder code;
@@ -18,16 +18,15 @@ public class MyByteSeparator {
             BufferedInputStream bw = new BufferedInputStream(in);
             int s;
             while ((s = bw.read()) != -1) {
-                code.append(s);
-                code.append("\n");
+                code.append((char)s);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-  /*  public int findWords() {
-        words = new StringBuilder("");
+    public int findWords() {
+        this.words = new StringBuilder("");
         Pattern p1 = Pattern.compile("([a-z]+)\\s");
         Matcher m = p1.matcher(code);
         Pattern p = Pattern.compile("\\s([a-z]+)\\s[^=;]");
@@ -35,14 +34,14 @@ public class MyByteSeparator {
         int start = 0;
         if (m.find(start)){
             counter++;
-            words.append(m.group(1).toString());
-            words.append("\n");
+            this.words.append(m.group(1).toString());
+            this.words.append("\n");
             start = m.end(1);
         }
         m = p.matcher(code);
         while (m.find(start)) {
             counter++;
-            if (words.indexOf(m.group(1).toString()) == -1) {
+            if (this.words.indexOf(m.group(1).toString()) == -1) {
                 words.append(m.group(1).toString());
                 words.append("\n");
             }
@@ -54,5 +53,27 @@ public class MyByteSeparator {
 
     public String getListOfWords(){
         return words.toString();
-    }*/
+    }
+
+    public void writeWords() {
+        try {
+            FileOutputStream fs = new FileOutputStream("H:\\Java-EPAM\\HW4_task_2_byte.txt");
+            BufferedOutputStream bs = new BufferedOutputStream(fs);
+            DataOutputStream ds = new DataOutputStream(bs);
+
+            Pattern p = Pattern.compile("[^\n]([a-z]+)");
+            Matcher m = p.matcher(words);
+            while (m.find()) {
+                byte[] bytes = m.group(0).toString().getBytes();
+                ds.write(bytes,0,bytes.length);
+                ds.write('\r');
+                ds.write('\n');
+            }
+            ds.write(this.findWords());
+            ds.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

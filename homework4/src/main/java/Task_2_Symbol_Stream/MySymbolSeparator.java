@@ -61,7 +61,12 @@ public class MySymbolSeparator {
             FileWriter fw = new FileWriter("H:\\Java-EPAM\\HW4_task_2.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
-            pw.println(words.toString());
+            Pattern p = Pattern.compile("[^\n]([a-z]+)");
+            Matcher m = p.matcher(words);
+            while (m.find()) {
+                pw.println(m.group(0).toString());
+            }
+            pw.println("count = " + this.findWords());
             pw.close();
         }
         catch (Exception e){
