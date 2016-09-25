@@ -51,7 +51,6 @@ public class MySearch {
     }
 
     public void sentenceWithImg(){
-        //String page = "&nbsp; Рис. 5 я рисую рисунке 6 как &nbsp;";
         StringBuilder str = new StringBuilder(page);
         Pattern p = Pattern.compile("рисунке \\d+|\\(Рис. \\d+\\)|рис. \\d+");
         Pattern p1 = Pattern.compile("&nbsp;");

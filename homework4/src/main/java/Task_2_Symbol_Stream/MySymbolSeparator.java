@@ -1,0 +1,71 @@
+package Task_2_Symbol_Stream;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MySymbolSeparator {
+    StringBuilder code;
+    StringBuilder words;
+
+    MySymbolSeparator(){
+        readCode();
+    }
+    private void readCode() {
+        code = new StringBuilder("");
+        try {
+            FileReader in = new FileReader("H:\\JavaProjects\\JavaFundamentals\\homework3\\src\\main\\java\\Task_1_Logger\\CrazyLogger.java");
+            BufferedReader bw = new BufferedReader(in);
+            String s;
+            while ((s = bw.readLine()) != null) {
+                code.append(s);
+                code.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int findWords() {
+        words = new StringBuilder("");
+        Pattern p1 = Pattern.compile("([a-z]+)\\s");
+        Matcher m = p1.matcher(code);
+        Pattern p = Pattern.compile("\\s([a-z]+)\\s[^=;]");
+        int counter = 0;
+        int start = 0;
+        if (m.find(start)){
+            counter++;
+            words.append(m.group(1).toString());
+            words.append("\n");
+            start = m.end(1);
+        }
+        m = p.matcher(code);
+        while (m.find(start)) {
+            counter++;
+            if (words.indexOf(m.group(1).toString()) == -1) {
+                words.append(m.group(1).toString());
+                words.append("\n");
+            }
+            start = m.end(1);
+        }
+        System.out.println(words.toString());
+        return counter;
+    }
+
+    public String getListOfWords(){
+        return words.toString();
+    }
+
+    public void writeWord(){
+        try {
+            FileWriter fw = new FileWriter("H:\\Java-EPAM\\HW4_task_2.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println(words.toString());
+            pw.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
