@@ -13,9 +13,7 @@ public class MySymbolSeparator {
     }
     private void readCode() {
         code = new StringBuilder("");
-        try {
-            FileReader in = new FileReader("H:\\JavaProjects\\JavaFundamentals\\homework3\\src\\main\\java\\Task_1_Logger\\CrazyLogger.java");
-            BufferedReader bw = new BufferedReader(in);
+        try (BufferedReader bw = new BufferedReader(new FileReader("H:\\JavaProjects\\JavaFundamentals\\homework3\\src\\main\\java\\Task_1_Logger\\CrazyLogger.java"))){
             String s;
             while ((s = bw.readLine()) != null) {
                 code.append(s);
@@ -48,7 +46,6 @@ public class MySymbolSeparator {
             }
             start = m.end(1);
         }
-        System.out.println(words.toString());
         return counter;
     }
 
@@ -57,16 +54,14 @@ public class MySymbolSeparator {
     }
 
     public void writeWord(){
-        try {
-            FileWriter fw = new FileWriter("H:\\Java-EPAM\\HW4_task_2.txt");
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("HW4_task_2_symbols.txt")))){
             Pattern p = Pattern.compile("[^\n]([a-z]+)");
             Matcher m = p.matcher(words);
             while (m.find()) {
                 pw.println(m.group(0).toString());
             }
             pw.println("count = " + this.findWords());
+            pw.flush();
             pw.close();
         }
         catch (Exception e){

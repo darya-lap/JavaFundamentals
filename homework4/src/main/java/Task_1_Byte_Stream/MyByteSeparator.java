@@ -11,11 +11,10 @@ public class MyByteSeparator {
     MyByteSeparator(){
         readCode();
     }
+
     private void readCode() {
         code = new StringBuilder("");
-        try {
-            FileInputStream in = new FileInputStream("H:\\JavaProjects\\JavaFundamentals\\homework3\\src\\main\\java\\Task_1_Logger\\CrazyLogger.java");
-            BufferedInputStream bw = new BufferedInputStream(in);
+        try (BufferedInputStream bw = new BufferedInputStream(new FileInputStream("H:\\JavaProjects\\JavaFundamentals\\homework3\\src\\main\\java\\Task_1_Logger\\CrazyLogger.java"))){
             int s;
             while ((s = bw.read()) != -1) {
                 code.append((char)s);
@@ -47,7 +46,6 @@ public class MyByteSeparator {
             }
             start = m.end(1);
         }
-        System.out.println(words.toString());
         return counter;
     }
 
@@ -56,11 +54,9 @@ public class MyByteSeparator {
     }
 
     public void writeWords() {
-        try {
-            FileOutputStream fs = new FileOutputStream("H:\\Java-EPAM\\HW4_task_2_byte.txt");
-            BufferedOutputStream bs = new BufferedOutputStream(fs);
-            DataOutputStream ds = new DataOutputStream(bs);
-
+        try (DataOutputStream ds = new DataOutputStream(
+                new BufferedOutputStream(
+                        new FileOutputStream("HW4_task_2_byte.txt")))){
             Pattern p = Pattern.compile("[^\n]([a-z]+)");
             Matcher m = p.matcher(words);
             while (m.find()) {
@@ -70,6 +66,7 @@ public class MyByteSeparator {
                 ds.write('\n');
             }
             ds.write(this.findWords());
+            ds.flush();
             ds.close();
         }
         catch(Exception e){

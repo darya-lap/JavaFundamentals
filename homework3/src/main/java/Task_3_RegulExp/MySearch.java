@@ -13,7 +13,7 @@ public class MySearch {
     private String getPage(){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
-            InputStream is = new FileInputStream(new File("H:\\Java-EPAM\\page.html"));
+            InputStream is = new FileInputStream(new File("page_html.html"));
             int b;
             while ((b = is.read()) != -1) {
                 baos.write(b);

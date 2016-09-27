@@ -6,15 +6,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class CodeTranslator {
-    String text ;
+    char[] text;
 
     CodeTranslator(){
         text = readText();
     }
 
-    private String readText() {
-        try {
-            InputStreamReader isr = new InputStreamReader(new FileInputStream("task_3_text.txt"), "utf8");
+    private char[] readText() {
+        try (InputStreamReader isr = new InputStreamReader(new FileInputStream("task_3_text.txt"), "utf8")){
             char b[] = new char [500];
             int k;
             int i = 0;
@@ -23,26 +22,24 @@ public class CodeTranslator {
                 i++;
             }
             isr.close();
-            System.out.println(b.toString());
-            return b.toString();
+            System.out.println(b);
+            return b;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public String Write16Text(){
-        try {
-            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("task_3_text16.txt"), "utf16");
+    public char[] Write16Text(){
+        try(OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("task_3_text16.txt"), "utf16")){
             osw.write(text);
+            osw.flush();
             osw.close();
-            System.out.println(osw.toString());
-            return osw.toString();
         }
         catch(Exception e){
             e.printStackTrace();
-            return null;
         }
+        return text;
     }
 }
 
