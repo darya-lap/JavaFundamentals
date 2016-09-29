@@ -1,28 +1,45 @@
 package Task_1_File_Directory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileDirectory extends File {
 
-
     private ArrayList<FileDirectory> dir;
-    private ArrayList<File> txt;
+    private ArrayList<File> txt ;
     private ArrayList<File> other;
     private static FileDirectory root;
-
+    {
+        dir = null;
+        txt = null;
+        other = null;
+        root = null;
+    }
     FileDirectory(String path){
         super(path);
-        dir = new ArrayList<>();
-        txt = new ArrayList<>();
-        other = new ArrayList<>();
-        sortFiles();
+        if (this.exists()) {
+            dir = new ArrayList<>();
+            txt = new ArrayList<>();
+            other = new ArrayList<>();
+            sortFiles();
+        }
     }
 
-    public void setRoot(FileDirectory f){
-        root = f;
+    public boolean startApp(){
+        if (!this.exists()){
+            return false;
+        }
+        else{
+            this.setRoot();
+            return true;
+        }
+    }
+
+    public void setRoot(){
+        root = this;
     }
 
     private void sortFiles(){
@@ -80,19 +97,24 @@ public class FileDirectory extends File {
     }
 
     public String showInDirectory(int i) {
-        if (goIn(i) == null) return null;
-        else return this.goIn(i).getFileList();
-    }
-    public FileDirectory goIn(int i){
-        if ((i > dir.size()) || (i < 1)){
-            System.out.println("Папки с таким номером не существует.");
+        try{
+            return this.goIn(i).getName();
+        }
+        catch(FileNotFoundException e){
             return null;
+        }
+    }
+    public FileDirectory goIn(int i) throws FileNotFoundException{
+        if ((i > dir.size()) || (i < 1)){
+            throw new FileNotFoundException("Папки с таким номером не существует.");
         }
         else return this.dir.get(i-1);
     }
 
-    public FileDirectory goBack(){
-        if (this == root) return this;
+    public FileDirectory goBack() throws FileNotFoundException{
+        if (this == root) {
+            throw new FileNotFoundException("Вы в корневой папке!");
+        }
         else{
             String s = this.getAbsolutePath();
             Pattern p = Pattern.compile("(\\\\)");
