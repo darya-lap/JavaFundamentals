@@ -30,9 +30,6 @@ public class FilleDirectoryTest {
 
     }
 
-
-
-
     @Test
     public void showInDirectoryTest() {
         fileDirectory.startApp();
@@ -41,13 +38,7 @@ public class FilleDirectoryTest {
         i = 4;
         assertEquals(fileDirectory.showInDirectory(i), "Текстовые файлы:\n1. text1.txt\n");
     }
-//
-//    @Test
-//    public void CreateTextFile(){
-//        fileDirectory.setRoot(fileDirectory);
-//
-//    }
-//
+
     @Test
     public void GoInExistAndNonexistDirectories(){
         fileDirectory.startApp();
@@ -89,5 +80,12 @@ public class FilleDirectoryTest {
         }
         assertEquals(fileDirectory.getName(),"Tasks");
     }
+
+    @Test
+    public void CreateTextFileAndEditTextFile(){
+        System.out.println("Для тестировки создания или редактирования текстового файла нужно запускать main ;(");
+    }
+
+
 
 }
