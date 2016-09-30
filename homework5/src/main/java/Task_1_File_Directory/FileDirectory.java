@@ -129,58 +129,30 @@ public class FileDirectory extends File {
         }
     }
 
-    public void createTextFile(){
+    public void createTextFile(BufferedReader scan){
         System.out.println("Введите имя файла:");
-        File textFile = null;
-        BufferedReader scan = new BufferedReader(new InputStreamReader((System.in)));
+        File textFile;
         StringBuilder text = new StringBuilder();
         try {
-            String fileName = scan.readLine();
-            System.out.println("Введите содержимое файла (чтобы закончить запись, введите \"End of the text\":\n");
-            textFile = new File(this.getAbsolutePath() + "\\" + fileName + ".txt");
-            String b;
-            while (!((b = scan.readLine()).equals("End of the text"))){
-                text.append(b + "\n");
-            }
-            scan.close();
+            textFile = new File(this.getAbsolutePath() + "\\" + scan.readLine() + ".txt");
+            this.setText(text, textFile, scan);
         }
         catch (IOException e){
             e.printStackTrace();
         }
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(textFile)))){
-            pw.write(text.toString());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        this.txt.add(textFile);
     }
-    public void editTextFile(){
+    public void editTextFile(BufferedReader scan){
         System.out.println("Введите номер файла:");
-        BufferedReader scan = new BufferedReader(new InputStreamReader((System.in)));
-        StringBuilder text = new StringBuilder();
-        File textFile = null;
+        StringBuilder text;
+        File textFile;
         try {
             textFile = txt.get(Integer.parseInt(scan.readLine())-1);
-            StringBuilder str = getConsistOfTextFile(textFile);
-            System.out.println("Введите содержимое файла (чтобы закончить запись, введите \"End of the text\":\n");
-            String b;
-            while (!((b = scan.readLine()).equals("End of the text"))){
-                text.append(b + "\n");
-            }
-            scan.close();
+            text = getConsistOfTextFile(textFile);
+            this.setText(text,textFile, scan);
         }
         catch (IOException e){
             e.printStackTrace();
         }
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(textFile)))){
-            pw.write(text.toString());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        this.txt.add(textFile);
-
     }
     public StringBuilder getConsistOfTextFile(File f) {
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
@@ -197,13 +169,36 @@ public class FileDirectory extends File {
         }
 
     }
-    public String setText(){
-
+    public void setText(StringBuilder text, File textFile, BufferedReader scan){
+       try {
+            System.out.println("Введите содержимое файла (чтобы закончить запись, введите \"End of the text\":\n");
+            String b;
+            while (!((b = scan.readLine()).equals("End of the text"))){
+                text.append(b + "\r\n");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(textFile)))){
+            pw.write(text.toString());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        this.txt.add(textFile);
     }
 
     public static void main(String ... args) {
+        BufferedReader scan = new BufferedReader(new InputStreamReader((System.in)));
         FileDirectory fileDirectory = new FileDirectory("H:\\Java-EPAM");
-        //fileDirectory.createTextFile();
-        fileDirectory.editTextFile();
+        fileDirectory.createTextFile(scan);
+        fileDirectory.editTextFile(scan);
+        try {
+            scan.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
