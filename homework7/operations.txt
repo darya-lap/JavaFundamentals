@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="WINDOWS-1251"?>
+<operations>
+  <transfer>
+    <from>111111</from>
+    <to>100000</to>
+    <amount>200</amount>
+  </transfer>
+  <transfer>
+    <from>222222</from>
+    <to>333333</to>
+    <amount>500</amount>
+  </transfer>
+  <transfer>
+    <from>100000</from>
+    <to>111111</to>
+    <amount>500</amount>
+  </transfer>
+  <transfer>
+    <from>100000</from>
+    <to>111111</to>
+    <amount>100</amount>
+  </transfer>
+  <transfer>
+    <from>100000</from>
+    <to>111111</to>
+    <amount>200</amount>
+  </transfer>
+  <transfer>
+      <from>333333</from>
+      <to>111111</to>
+      <amount>200</amount>
+    </transfer>
+  <transfer>
+    <from>111111</from>
+    <to>100000</to>
+    <amount>500</amount>
+  </transfer>
+  <transfer>
+      <from>100000</from>
+      <to>111111</to>
+      <amount>1000</amount>
+    </transfer>
+</operations>

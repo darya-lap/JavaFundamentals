@@ -1,9 +1,9 @@
 package Task_3;
 
-import static Task_3.Function3.F3;
+import static java.lang.StrictMath.tanh;
 
 /**
- *
+ *Программа в качетве аргументов принимает 3 числа: 1-ое и 2-ое - границы интервала(в любом порядке), 3-е - ширина шага
  */
 public class Main3 {
     public static void main(String[] args) {
@@ -24,13 +24,13 @@ public class Main3 {
             do {
                 System.out.printf("%6f", x);
                 System.out.printf(" |");
-                System.out.printf("%6f", F3(x));
+                System.out.printf("%6f", tanh(2 * x) - 3);
                 System.out.printf("\n---------|---------\n");
                 x += h;
             } while (x < b);
             System.out.printf("%6f", b);
             System.out.printf(" |");
-            System.out.printf("%6f", F3(b));
+            System.out.printf("%6f", tanh(2 * x) - 3);
         }
         catch (Exception e){
             System.out.println("Некорректные данные\n");

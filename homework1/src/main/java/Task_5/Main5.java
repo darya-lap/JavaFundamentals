@@ -2,6 +2,7 @@ package Task_5;
 
 /**
  * Created by Дарья on 27.08.2016.
+ * Программа в качестве единственного аргумента принимает целое число, которое означает размер матрицы
  */
 public class Main5 {
     public static void main(String[] args) {

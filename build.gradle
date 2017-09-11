@@ -16,4 +16,17 @@ subprojects {
         compileOnly 'org.projectlombok:lombok:+'
         testCompile 'junit:junit:+'
     }
+
+    configurations {
+        sql
+    }
+    dependencies {
+        sql 'mysql:mysql-connector-java:5.1.6'
+    }
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    dependencies{
+        compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    }
+
 }

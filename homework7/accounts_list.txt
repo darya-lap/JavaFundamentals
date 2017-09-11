@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="WINDOWS-1251"?>
+<accounts>
+  <account>
+    <accountID>100000</accountID>
+    <balance>1000</balance>
+  </account>
+  <account>
+    <accountID>111111</accountID>
+    <balance>2000</balance>
+  </account>
+  <account>
+    <accountID>222222</accountID>
+    <balance>3000</balance>
+  </account>
+  <account>
+    <accountID>333333</accountID>
+    <balance>2500</balance>
+  </account>
+  <account>
+    <accountID>444444</accountID>
+    <balance>1500</balance>
+  </account>
+  <account>
+    <accountID>555555</accountID>
+    <balance>1800</balance>
+  </account>
+</accounts>

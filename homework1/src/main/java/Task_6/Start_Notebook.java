@@ -12,7 +12,7 @@ public class Start_Notebook {
         int w = 1;
         Menu:
         while (w != 5){
-            System.out.println("\n\nЧто я могу сделать для вас?");
+            System.out.println("\nЧто я могу сделать для вас?");
             System.out.println("1. Показать список всех записей\n2. Добавить запись");
             System.out.println("3. Удалить запись\n4. Редактировать запись\n5. Выйти из чудо-программы");
             Scanner in = new Scanner(System.in);
@@ -44,8 +44,6 @@ public class Start_Notebook {
                     System.out.println("Некорректный ввод");
                     break;
             }
-            //System.out.println("\nНажмите на любую букву или цефру для продолжения...");
-            //in.next();
         }
     }
 }
